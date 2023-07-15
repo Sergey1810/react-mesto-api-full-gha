@@ -46,7 +46,7 @@ class Auth {
             .then(res => { return this._checkResponse(res) })
     }
 }
-
+//commit
 export const auth = new Auth({
     baseUrl: 'https://sergeyback.nomoredomains.xyz',
 }); 
