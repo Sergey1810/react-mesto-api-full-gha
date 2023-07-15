@@ -84,7 +84,7 @@ export class Api {
   }
 
   export const api = new Api({
-    baseUrl: 'http://localhost:4000',
+    baseUrl: 'http://sergey.nomoredomains.xyz/api',
     headers: {
       authorization: `${localStorage.getItem('token')}`,
       'Content-Type': 'application/json'

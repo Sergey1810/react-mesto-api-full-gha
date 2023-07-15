@@ -48,5 +48,5 @@ class Auth {
 }
 
 export const auth = new Auth({
-    baseUrl: 'http://localhost:4000',
+    baseUrl: 'http://sergey.nomoredomains.xyz/api',
 }); 
