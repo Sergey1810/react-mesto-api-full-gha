@@ -1,0 +1,11 @@
+.element__like-info{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter';
+    font-style: "regular";
+    font-size: 13px;
+    line-height: 16px;
+    margin-right: 20px;
+    margin-top: 3px;
+    color: #000000;
+}

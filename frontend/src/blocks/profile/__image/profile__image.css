@@ -1,0 +1,7 @@
+.profile__image{
+    position: relative; 
+}
+
+.profile__image:hover .profile__image-hover{
+    z-index: 1; 
+}

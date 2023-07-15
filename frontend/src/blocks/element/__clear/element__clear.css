@@ -1,0 +1,11 @@
+.element__clear{
+  display: none;
+  position: absolute;
+  top:20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.element__clear:hover{
+  opacity: 0.6;
+}

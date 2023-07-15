@@ -1,0 +1,11 @@
+.profile__icon{
+    position: absolute;
+    background-image: url('../../../images/avatar_rec.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 26px;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+}

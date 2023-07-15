@@ -1,0 +1,18 @@
+.header__button{
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: #A9A9A9;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-style: 'Regular';
+    line-height: 22px;
+    text-align: start;
+}
+
+@media screen and (max-width:660px) {
+    .header__button {
+        
+    }
+}

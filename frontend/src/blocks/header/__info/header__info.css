@@ -1,0 +1,11 @@
+.header__info {
+    display: flex;
+    gap: 12px;
+}
+
+@media screen and (max-width:660px) {
+    .header__info {
+        display: none;
+        margin-right: 15px;
+    }
+}
