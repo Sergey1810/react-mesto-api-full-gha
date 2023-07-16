@@ -9,8 +9,6 @@ const errorMiddlewares = require('./middlewares/errors');
 // eslint-disable-next-line import/order
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// eslint-disable-next-line import/no-extraneous-dependencies, import/order
-const helmet = require('helmet');
 
 const { PORT = 4000 } = process.env;
 
@@ -23,8 +21,11 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
-app.use(helmet());
+const corsOptions = {
+  origin: ['https://sergey.nomoredomains.xyz'],
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
+};
+app.use(cors(corsOptions));
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
