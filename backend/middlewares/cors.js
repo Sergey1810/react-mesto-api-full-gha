@@ -5,7 +5,7 @@ const allowedCors = [
   'http://sergeyback.nomoredomains.xyz',
 ];
 
-const corsMiddlewares = (req, res, next) => {
+module.exports = (req, res, next) => {
   const { origin } = req.headers;
   const { method } = req;
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
@@ -20,5 +20,3 @@ const corsMiddlewares = (req, res, next) => {
   }
   return next();
 };
-
-module.exports = { corsMiddlewares };

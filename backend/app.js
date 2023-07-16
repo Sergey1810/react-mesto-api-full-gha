@@ -4,7 +4,6 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const corsMiddlewares = require('./middlewares/cors');
 const routes = require('./routes/index');
 const errorMiddlewares = require('./middlewares/errors');
 // eslint-disable-next-line import/order
@@ -24,7 +23,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(bodyParser.json());
 
 app.use(cors());
-app.use(corsMiddlewares());
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
