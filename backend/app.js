@@ -22,6 +22,33 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(bodyParser.json());
 
+const allowedCors = [
+  'https://sergey.nomoredomains.xyz',
+  'http://sergey.nomoredomains.xyz',
+  'https://sergeyback.nomoredomains.xyz',
+  'http://sergeyback.nomoredomains.xyz',
+];
+
+// eslint-disable-next-line consistent-return
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  const { method } = req;
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+  const requestHeaders = req.headers['access-control-request-headers'];
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+  }
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    return res.end();
+  }
+
+  next();
+});
+
 app.use(cors());
 app.use(requestLogger);
 app.get('/crash-test', () => {
