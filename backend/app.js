@@ -25,7 +25,7 @@ const corsOptions = {
   origin: '*',
   methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
 };
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
