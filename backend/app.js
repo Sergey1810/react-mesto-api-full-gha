@@ -49,7 +49,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors());
+//app.use(cors());
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
