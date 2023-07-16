@@ -22,8 +22,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(bodyParser.json());
 const corsOptions = {
-  origin: ['https://sergey.nomoredomains.xyz'],
-  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
+  origin: ['https://sergey.nomoredomains.xyz', 'https://sergeyback.nomoredomains.xyz'],
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
 };
 app.use(cors(corsOptions));
 app.use(requestLogger);
