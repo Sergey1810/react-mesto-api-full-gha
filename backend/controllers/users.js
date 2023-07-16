@@ -8,8 +8,6 @@ const ConflictError = require('../errors/conflict-error');
 const InternalServerError = require('../errors/internal-server-error');
 const UnauthorizedError = require('../errors/unauthorized-error');
 
-const { NODE_ENV, SALT_ROUNDS } = process.env;
-
 const userBadRequestError = (e, res, next) => {
   if (e.name === 'ValidationError') {
     next(new BadRequestError('Переданы некорректные данные при создании пользователя'));
@@ -55,24 +53,22 @@ const createUser = (req, res, next) => {
   if (!email || !password) {
     throw new BadRequestError('Не передан email или пароль');
   }
-  return User.findOne({ email })
+  return User.findOne({ email }).select('+password')
     // eslint-disable-next-line consistent-return
     .then((user) => {
       if (user) {
         throw new ConflictError('Пользователь уже существует');
       }
-      bcrypt.hash(
-        password,
-        NODE_ENV === 'production' ? SALT_ROUNDS : 10,
-        (err, hash) => User.create({
+      bcrypt.hash(password, 10)
+        .then((hash) => User.create({
           email,
           password: hash,
           name,
           about,
           avatar,
-        })
-          .then((users) => res.status(201).send(users)),
-      );
+        }))
+        .then((users) => res.status(201).send(users))
+        .catch(next);
     })
     .catch(next);
 };
@@ -101,17 +97,17 @@ const updateAvatarUserById = (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    next(new BadRequestError('Не передан email или пароль'));
+    return next(new BadRequestError('Не передан email или пароль'));
   }
   User.findOne({ email }).select('+password')
     // eslint-disable-next-line consistent-return
     .then((user) => {
       if (!user) {
-        next(new ForbiddenError('Такого пользователя не существует'));
+        return next(new ForbiddenError('Такого пользователя не существует'));
       }
       bcrypt.compare(password, user.password, (err, isPasswordMatch) => {
         if (!isPasswordMatch) {
-          next(new UnauthorizedError('Неправильный логин или пароль'));
+          return next(new UnauthorizedError('Неправильный логин или пароль'));
         }
         const token = generateToken(user._id);
         return res.status(200).send({ token });

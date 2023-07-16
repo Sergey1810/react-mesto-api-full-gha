@@ -10,12 +10,11 @@ const errorMiddlewares = require('./middlewares/errors');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 4000 } = process.env;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
-  useNewUrlParser: true,
 }).then(() => {
   console.log('db connected');
 });
@@ -49,7 +48,7 @@ app.use((req, res, next) => {
   next();
 });
 
-//app.use(cors());
+app.use(cors());
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {

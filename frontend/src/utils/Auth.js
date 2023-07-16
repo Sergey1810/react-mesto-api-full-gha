@@ -17,7 +17,7 @@ class Auth {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email,password })
+            body: JSON.stringify({ password, email })
         })
             .then(res => { return this._checkResponse(res) })
     }
@@ -29,7 +29,7 @@ class Auth {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ password, email })
         })
             .then(res => { return this._checkResponse(res) })
     };
