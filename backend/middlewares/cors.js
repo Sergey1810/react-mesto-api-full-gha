@@ -1,6 +1,6 @@
 const allowedCors = [
-  'https://sergey.nomoredomains.xyz/sign-in',
-  'http://sergey.nomoredomains.xyz/sign-in',
+  'https://sergey.nomoredomains.xyz',
+  'http://sergey.nomoredomains.xyz',
   'https://sergeyback.nomoredomains.xyz',
   'http://sergeyback.nomoredomains.xyz',
 ];
