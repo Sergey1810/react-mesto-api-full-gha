@@ -6,6 +6,7 @@ const NotFoundError = require('../errors/not-found-error');
 const ForbiddenError = require('../errors/forbidden-error');
 const ConflictError = require('../errors/conflict-error');
 const InternalServerError = require('../errors/internal-server-error');
+const UnauthorizedError = require('../errors/unauthorized-error');
 
 const { NODE_ENV, SALT_ROUNDS } = process.env;
 
@@ -100,17 +101,17 @@ const updateAvatarUserById = (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return res.status(400).send({ message: 'Не передан email или пароль' });
+    next(new BadRequestError('Не передан email или пароль'));
   }
   User.findOne({ email }).select('+password')
     // eslint-disable-next-line consistent-return
     .then((user) => {
       if (!user) {
-        return res.status(403).send({ message: 'Такого пользователя не существует' });
+        next(new ForbiddenError('Такого пользователя не существует'));
       }
       bcrypt.compare(password, user.password, (err, isPasswordMatch) => {
         if (!isPasswordMatch) {
-          return res.status(403).send({ message: 'Неправильный логин или пароль' });
+          next(new UnauthorizedError('Неправильный логин или пароль'));
         }
         const token = generateToken(user._id);
         return res.status(200).send({ token });
