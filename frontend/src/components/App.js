@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-  }, [])
+  }, [navigate])
 
   const handleTokenCheck = () => {
     const jwt = localStorage.getItem('token');
@@ -75,6 +75,7 @@ function App() {
 
   useEffect(() => {
     if(isAuth){
+      handleTokenCheck();
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([users, cards])=> {
         setCurrentUser(users)
