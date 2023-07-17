@@ -73,22 +73,22 @@ function App() {
     }
   }, [isOpen])
 
-  useEffect((isAuth) => {
+  useEffect(() => {
     if(isAuth){
       api.getUserInfo().then((users) => {
         setCurrentUser(users)
       })
       .catch((e) => console.log(e))
-  }}, [isAuth])
+  }}, [userData])
 
-  useEffect((isAuth) => {
+  useEffect(() => {
     if(isAuth){
       api.getInitialCards().then((cards) => {
         setCards(cards)
       })
         .catch((e) => console.log(e))
     }
-  }, [isAuth])
+  }, [userData])
 
   const handleCardClick = (card) => {
     setSelectedCard({
