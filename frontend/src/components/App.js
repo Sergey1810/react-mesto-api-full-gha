@@ -74,7 +74,7 @@ function App() {
   }, [isOpen])
 
   useEffect(() => {
-    if(isAuth){  
+    if(localStorage.getItem('token')){  
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([users, cards])=> {
         setCurrentUser(users)
