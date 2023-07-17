@@ -36,7 +36,6 @@ function App() {
         .then((res) => {
           if (res) {
             setUserData(res.email)
-            console.log('2 check')
             setIsAuth(true);
             navigate("/", { replace: true })
           }
@@ -78,7 +77,6 @@ function App() {
     if(isAuth){
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([users, cards])=> {
-        console.log('3 load')
         setCurrentUser(users)
         setCards(cards.reverse())
       })
