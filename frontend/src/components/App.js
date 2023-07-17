@@ -74,8 +74,8 @@ function App() {
   }, [isOpen])
 
   useEffect(() => {
-    if(isAuth){
-      handleTokenCheck();
+    handleTokenCheck();
+    if(isAuth){  
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([users, cards])=> {
         setCurrentUser(users)
