@@ -73,7 +73,7 @@ function App() {
     }
   }, [isOpen])
 
-  useEffect(() => {
+  useEffect((isAuth) => {
     if(isAuth){
       api.getUserInfo().then((users) => {
         setCurrentUser(users)
@@ -81,7 +81,7 @@ function App() {
       .catch((e) => console.log(e))
   }}, [isAuth])
 
-  useEffect(() => {
+  useEffect((isAuth) => {
     if(isAuth){
       api.getInitialCards().then((cards) => {
         setCards(cards)
