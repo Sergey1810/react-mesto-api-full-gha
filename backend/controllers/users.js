@@ -69,7 +69,7 @@ const createUser = (req, res, next) => {
         }))
         .then((users) => {
           const token = generateToken(users._id);
-          res.status(201).send(token);
+          res.status(201).send({ token });
         })
         .catch(next);
     })
