@@ -13,7 +13,10 @@ export class Api {
 
     getUserInfo(){
        return fetch(`${this.baseUrl}/users/me`, {
-                headers: this.headers
+        headers: {
+          'Authorization': `${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        }
             })
             .then((res) => {return this._checkResponse(res)})
         }
