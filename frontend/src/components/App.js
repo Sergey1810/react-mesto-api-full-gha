@@ -79,14 +79,14 @@ function App() {
 
     })
       .catch((e) => console.log(e))
-  }, [currentUser])
+  }, [isAuth])
 
   useEffect(() => {
     api.getInitialCards().then((cards) => {
       setCards(cards)
     })
       .catch((e) => console.log(e))
-  }, [currentUser])
+  }, [isAuth])
 
   const handleCardClick = (card) => {
     setSelectedCard({
