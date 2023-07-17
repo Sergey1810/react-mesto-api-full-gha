@@ -21,7 +21,7 @@ export default function Register(props) {
     if (password) {
       auth.register(password, email)
         .then((data) => {
-          data.data && props.handleInfoTooltipClick(true)
+          data && props.handleInfoTooltipClick(true)
           navigate('/sign-in', { replace: true });
         })
         .catch((e) => e && props.handleInfoTooltipClick(false))

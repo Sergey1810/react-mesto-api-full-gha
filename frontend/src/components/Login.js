@@ -21,7 +21,6 @@ export default function Login(props) {
         }
         auth.authorize(password, email)
             .then((data) => {
-                data.token && props.handleInfoTooltipClick(true)
                 if (data.token) {
                     localStorage.setItem('token', data.token);
                     setEmail('');
