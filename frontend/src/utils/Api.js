@@ -20,7 +20,10 @@ export class Api {
   
     getInitialCards() {
        return fetch(`${this.baseUrl}/cards`, {
-            headers: this.headers
+        headers: {
+          'Authorization': `${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        }
         })
         .then((res) => {return this._checkResponse(res)})
     }
