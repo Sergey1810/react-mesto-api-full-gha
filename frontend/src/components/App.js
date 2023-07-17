@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-  }, [navigate])
+  }, [])
 
   const handleTokenCheck = () => {
     if (localStorage.getItem('token')) {
@@ -74,8 +74,8 @@ function App() {
   }, [isOpen])
 
   useEffect(() => {
-    if (localStorage.getItem('token')){
-      Promise.all([api.getUserInfo(), api.getInitialCards()])
+    if(isAuth){
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([users, cards])=> {
         setCurrentUser(users)
         setCards(cards.reverse())
