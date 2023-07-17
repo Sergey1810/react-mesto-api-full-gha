@@ -75,7 +75,7 @@ function App() {
   }, [isOpen])
 
   useEffect(() => {
-    
+    if(isAuth){
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([users, cards])=> {
         console.log('3 load')
@@ -83,7 +83,7 @@ function App() {
         setCards(cards.reverse())
       })
       .catch((e) => console.log(e))
-  }, [isAuth])
+  }}, [isAuth])
 
 
   const handleCardClick = (card) => {
