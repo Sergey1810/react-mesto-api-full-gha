@@ -74,14 +74,14 @@ function App() {
   }, [isOpen])
 
   useEffect(() => {
-    if(localStorage.getItem('token')){  
+    
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([users, cards])=> {
         setCurrentUser(users)
         setCards(cards.reverse())
       })
       .catch((e) => console.log(e))
-  }}, [isAuth])
+  }, [navigate])
 
 
   const handleCardClick = (card) => {
