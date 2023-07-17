@@ -68,8 +68,7 @@ const createUser = (req, res, next) => {
           avatar,
         }))
         .then((users) => {
-          const token = generateToken(users._id);
-          res.status(201).send({ token });
+          res.status(201).send(users);
         })
         .catch(next);
     })
