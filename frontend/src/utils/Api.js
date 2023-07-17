@@ -2,7 +2,6 @@
 export class Api {
     constructor(options) {
       this.baseUrl = options.baseUrl;
-      this.headers = options.headers;
     }
     _checkResponse(res){
         if(res.ok){
@@ -34,7 +33,10 @@ export class Api {
     setUserInfo(name, about){
     return fetch(`${this.baseUrl}/users/me`, {
             method: 'PATCH',
-            headers: this.headers,
+            headers: {
+              'Authorization': `${localStorage.getItem('token')}`,
+              'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
               name: `${name}`,
              about: `${about}`
@@ -45,7 +47,10 @@ export class Api {
     setAddCard(name, link){
     return fetch(`${this.baseUrl}/cards`, {
             method: 'POST',
-            headers: this.headers,
+            headers: {
+              'Authorization': `${localStorage.getItem('token')}`,
+              'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
               name: `${name}`,
               link: `${link}`
@@ -57,7 +62,10 @@ export class Api {
     setDeleteCard(id){ 
     return fetch(`${this.baseUrl}/cards/${id}`, {
             method: 'DELETE',
-            headers: this.headers,
+            headers: {
+              'Authorization': `${localStorage.getItem('token')}`,
+              'Content-Type': 'application/json'
+            },
             })
             .then(res => {return this._checkResponse(res)})
     }  
@@ -65,7 +73,10 @@ export class Api {
     setAddLike(id){
         return fetch(`${this.baseUrl}/cards/${id}/likes`, {
                 method: 'PUT',
-                headers: this.headers,
+                headers: {
+                  'Authorization': `${localStorage.getItem('token')}`,
+                  'Content-Type': 'application/json'
+                },
              }) 
              .then(res => {return this._checkResponse(res)})
     }
@@ -73,7 +84,10 @@ export class Api {
     setRemoveLike(id){
           return fetch(`${this.baseUrl}/cards/${id}/likes`, {
                 method: 'DELETE',
-                headers: this.headers,
+                headers: {
+                  'Authorization': `${localStorage.getItem('token')}`,
+                  'Content-Type': 'application/json'
+                },
              })
              .then(res => {return this._checkResponse(res)})
     }
@@ -81,7 +95,10 @@ export class Api {
     setChangeAvatar(url){
       return fetch(`${this.baseUrl}/users/me/avatar`, {
         method: 'PATCH',
-        headers: this.headers,
+        headers: {
+          'Authorization': `${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
         avatar: `${url}`
         })})
@@ -90,9 +107,5 @@ export class Api {
   }
 
   export const api = new Api({
-    baseUrl: 'https://sergeyback.nomoredomains.xyz',
-    headers: {
-      'Authorization': `${localStorage.getItem('token')}`,
-      'Content-Type': 'application/json'
-    }
+    baseUrl: 'https://sergeyback.nomoredomains.xyz'
   }); 

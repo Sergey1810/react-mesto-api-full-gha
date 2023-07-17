@@ -74,15 +74,22 @@ function App() {
   }, [isOpen])
 
   useEffect(() => {
-    if(isAuth){
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([users, cards])=> {
+    if (isAuth) {
+      api.getUserInfo().then((users) => {
         setCurrentUser(users)
+      })
+        .catch((e) => console.log(e))
+    }
+  }, [isAuth])
+
+  useEffect(() => {
+    if (isAuth) {
+      api.getInitialCards().then((cards) => {
         setCards(cards.reverse())
       })
-      .catch((e) => console.log(e))
-  }}, [isAuth])
-
+        .catch((e) => console.log(e))
+    }
+  }, [isAuth])
 
   const handleCardClick = (card) => {
     setSelectedCard({
