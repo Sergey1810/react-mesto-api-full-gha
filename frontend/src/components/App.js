@@ -29,10 +29,6 @@ function App() {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    handleTokenCheck();
-  }, [])
-
   const handleTokenCheck = () => {
     const jwt = localStorage.getItem('token');
     if (jwt) {
@@ -47,6 +43,10 @@ function App() {
         .catch((e) => console.log(e));
     }
   }
+
+  useEffect(() => {
+    handleTokenCheck();
+  }, [isAuth])
 
   const handleLogin = () => {
     setIsAuth(true);
