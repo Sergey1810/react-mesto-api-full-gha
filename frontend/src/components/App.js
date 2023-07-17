@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-  }, [navigate])
+  }, [])
 
   const handleTokenCheck = () => {
     const jwt = localStorage.getItem('token');
