@@ -82,7 +82,7 @@ function App() {
         setCards(cards.reverse())
       })
       .catch((e) => console.log(e))
-  }}, [isAuth])
+  }}, [navigate])
 
 
   const handleCardClick = (card) => {
